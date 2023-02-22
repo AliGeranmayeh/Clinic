@@ -19,7 +19,9 @@ class AuthController extends Controller{
         self::setLayout('auth');
         $user = new UsersModel();
         if (Application::$app->request->method() === 'post') {
-            $user->loadData(Application::$app->request);
+            $user->loadData(Application::$app->request->getBody());
+            // var_dump( $user);
+            // die();
             if ($user->validate() && $user->register()) {
                 return 'Success';
             }
