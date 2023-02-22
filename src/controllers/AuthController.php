@@ -11,7 +11,7 @@ class AuthController{
         return Application::$app->router->renderView('login');
     }
      
-    public function signUp()
+    public function register()
     {
         if (Application::$app->request->method() === 'post') {
             return 'handle data';
