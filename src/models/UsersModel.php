@@ -2,7 +2,6 @@
 
 namespace clinic\models;
 use clinic\core\Model;
-
 class UsersModel extends Model{
     public String $name;
     public String $username;
@@ -16,6 +15,12 @@ class UsersModel extends Model{
     }
     public function rules():array
     {
-        return [];
+        return [
+            'name' => [self::RULE_REQUIRED],
+            'username' => [self::RULE_REQUIRED],
+            'email' => [self::RULE_REQUIRED,self::RULE_EMAIL],
+            'password' => [self::RULE_REQUIRED,[self::RULE_MIN,'min' => 8]],
+            'confirm_password' => [self::RULE_REQUIRED,[self::RULE_MATCH,'match' => 'password']],
+        ];
     }
 }
