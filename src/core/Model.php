@@ -24,19 +24,21 @@ abstract class Model{
     public abstract function rules():array;
     public function validate()
     {
-            foreach ($this->rules() as $attribute => $rules) {
-                $value = $this->{$attribute};
-                foreach ($rules as $ $rule) {
-                    $rule_name = $rule;
-                    if(!is_string($rule_name)){
-                        $rule_name = $rule[0];
-                    }
-                    if ($value == self::RULE_REQUIRED && !$value) {
-                        $this->addError($attribute,self::RULE_REQUIRED);
-                    }
+        foreach ($this->rules() as $attribute => $rules) {
+            $value = $this->{$attribute};
+            foreach ($rules as $ $rule) {
+                $rule_name = $rule;
+                if(!is_string($rule_name)){
+                    $rule_name = $rule[0];
                 }
-                    
+                if ($value == self::RULE_REQUIRED && !$value) {
+                    $this->addError($attribute,self::RULE_REQUIRED);
+                }
             }
+                    
+        }
+        return empty($this->errors);
+            
     }
     public function addError($attribute , $rule_name)
     {
