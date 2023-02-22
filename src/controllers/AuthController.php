@@ -2,6 +2,7 @@
 namespace clinic\controllers;
 use clinic\core\Application;
 use clinic\core\Controller;
+use clinic\models\UsersModel;
 
 class AuthController extends Controller{
     public static function login()
@@ -16,9 +17,18 @@ class AuthController extends Controller{
     public static function register()
     {   
         self::setLayout('auth');
+        $user = new UsersModel();
         if (Application::$app->request->method() === 'post') {
-            return 'handle data';
+            $user->loadData(Application::$app->request);
+            if ($user->validate() && $user->register()) {
+                return 'Success';
+            }
+            return Application::$app->router->renderView('register',[
+                'model' => $user
+            ]);
         }
-        return Application::$app->router->renderView('register');
+        return Application::$app->router->renderView('register',[
+            'model' => $user
+        ]);
     }
 } 
