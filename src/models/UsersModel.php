@@ -14,4 +14,8 @@ class UsersModel extends Model{
     {
         return 'creating new user';
     }
+    public function rules()
+    {
+        return [];
+    }
 }
