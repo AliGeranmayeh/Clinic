@@ -31,10 +31,14 @@ class Router{
             http_response_code(404);
             return $this->renderView("_404");
         }
-        if(is_string($callback)){
-            return $this->renderView($callback);
-        }
-        return call_user_func($callback);
+        $class = $callback[1];
+        
+       
+        Application::$app->controller = new $callback[0]();
+        $callback[0] = Application::$app->controller;
+        
+       
+        return call_user_func([$callback[0] , $callback[1] ], $this->request);
     }
 
     public function renderView($view, $params = [])
@@ -46,8 +50,9 @@ class Router{
     }
     protected function layoutContent()
     {
+        $layout = Application::$app->controller::$layout;
         ob_start();
-        include_once "./../views/layouts/main.php";
+        include_once "./../views/layouts/$layout.php";
         return ob_get_clean();
     }
 

@@ -3,7 +3,7 @@
 namespace clinic\core;
 
 class Application{
-    
+    public Controller $controller;
     public Request $request;
     public Router $router;
     public static Application $app; 
