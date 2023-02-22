@@ -14,7 +14,7 @@ class UsersModel extends Model{
     {
         return 'creating new user';
     }
-    public function rules()
+    public function rules():array
     {
         return [];
     }
