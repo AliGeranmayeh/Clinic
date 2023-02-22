@@ -6,7 +6,12 @@ class Request{
 
     public function getPath()
     {
-        # code...
+        $path  = $_SERVER['REQUEST_URI'] ?? false;
+        $position = strpos($path,'?');
+        if(!$position){
+            return $path;
+        }
+        return substr($path,0,$position);
     }
 
     public function method()
