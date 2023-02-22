@@ -1,10 +1,12 @@
 <?php 
 namespace clinic\controllers;
 use clinic\core\Application;
+use clinic\core\Controller;
 
-class AuthController{
+class AuthController extends Controller{
     public static function login()
     {
+        self::setLayout('auth');
         if (Application::$app->request->method() === 'post') {
             return 'handle data';
         }
@@ -12,7 +14,8 @@ class AuthController{
     }
      
     public static function register()
-    {
+    {   
+        self::setLayout('auth');
         if (Application::$app->request->method() === 'post') {
             return 'handle data';
         }

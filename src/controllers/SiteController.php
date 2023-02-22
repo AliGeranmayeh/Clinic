@@ -1,9 +1,10 @@
 <?php 
 namespace clinic\controllers;
 use clinic\core\Application;
+use clinic\core\Controller;
 
 
-class SiteController{
+class SiteController extends Controller{
 
 
     public static function doctorInfo()
