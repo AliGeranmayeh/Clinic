@@ -3,7 +3,7 @@ namespace clinic\controllers;
 use clinic\core\Application;
 
 class AuthController{
-    public function login()
+    public static function login()
     {
         if (Application::$app->request->method() === 'post') {
             return 'handle data';
@@ -11,11 +11,11 @@ class AuthController{
         return Application::$app->router->renderView('login');
     }
      
-    public function register()
+    public static function register()
     {
         if (Application::$app->request->method() === 'post') {
             return 'handle data';
         }
-        return Application::$app->router->renderView('sign-up');
+        return Application::$app->router->renderView('register');
     }
 } 
