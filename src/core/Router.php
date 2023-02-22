@@ -14,4 +14,9 @@ class Router{
     {
         $this->routes['post']["$path"] = $callback;
     }
+
+    public function resolve()
+    {
+        
+    }
 }
