@@ -16,6 +16,6 @@ class Request{
 
     public function method()
     {
-        # code...
+        return strtolower($_SERVER['REQUEST_METHOD']);
     }
 }
