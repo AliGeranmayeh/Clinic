@@ -30,6 +30,14 @@ class Router{
         if(!$callback){
             return "404 NOT FOUND";
         }
+        if(is_string($callback)){
+            return $this->renderView($callback);
+        }
         return call_user_func($callback);
+    }
+
+    public function renderView($view)
+    {
+        include_once __DIR__."/../views/$view.php";
     }
 }
