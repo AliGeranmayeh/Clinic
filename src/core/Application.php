@@ -4,7 +4,7 @@ namespace clinic\core;
 
 class Application{
     
-    private Request $request;
+    public Request $request;
     public Router $router;
     public static Application $app; 
     public function __construct()

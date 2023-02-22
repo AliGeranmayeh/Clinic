@@ -16,6 +16,7 @@ class SiteController{
     }
     public static function handleDoctorInfo()
     {
+        var_dump(Application::$app->request->getBody());
         return "handling data";
     }
 }
