@@ -4,11 +4,13 @@ namespace clinic\core;
 
 class Application{
     
+    private Request $request;
     public Router $router;
     
     public function __construct()
     {
-        $router = new Router();
+        $this->request = new Request();
+        $this->router = new Router($this->request);
     }
     public function run()
     {
