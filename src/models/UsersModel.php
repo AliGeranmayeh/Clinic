@@ -3,7 +3,7 @@
 namespace clinic\models;
 use clinic\core\Model;
 use clinic\core\DbModel;
-use self;
+
 
 class UsersModel extends DbModel{
 
@@ -27,8 +27,8 @@ class UsersModel extends DbModel{
     {
         return [
             'name' => [self::RULE_REQUIRED],
-            'username' => [self::RULE_REQUIRED],
-            'email' => [self::RULE_REQUIRED,self::RULE_EMAIL],
+            'username' => [self::RULE_REQUIRED,[self::RULE_UNIQUE , 'class'=> self::class]],
+            'email' => [self::RULE_REQUIRED,self::RULE_EMAIL,[self::RULE_UNIQUE , 'class'=> self::class]],
             'password' => [self::RULE_REQUIRED,[self::RULE_MIN,'min' => 8]],
             'confirm_password' => [self::RULE_REQUIRED,[self::RULE_MATCH,'match' => 'password']],
         ];

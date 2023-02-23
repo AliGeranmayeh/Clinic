@@ -8,6 +8,8 @@ abstract class Model{
     public const RULE_MIN = 'min';
     public const RULE_EMAIL = 'email';
     public const RULE_MATCH = 'match';
+    public const RULE_UNIQUE = 'unique';
+
 
     public $errors  =[];
     public function loadData($data)
@@ -46,6 +48,18 @@ abstract class Model{
                 if ($rule_name == self::RULE_MATCH && $this->{$rule['match']} !== $value) {
                     $this->addError($attribute,self::RULE_MATCH,$rule);
                 }
+                if ($rule_name == self::RULE_UNIQUE) {
+                    $class_name = $rule['class'];
+                    $table_name = $class_name::tableName();
+                    $stmnt = Application::$app->db->pdo->prepare("SELECT * FROM $table_name WHERE $attribute = :attr;");
+                    $stmnt->bindValue(':attr',$value);
+                    $stmnt->execute();
+                    $record = $stmnt->fetchObject();
+                    if ($record) {
+                        $this->addError($attribute,self::RULE_UNIQUE,['field'=> $attribute] );
+                    }
+                    
+                }
             }
               
         }
@@ -66,10 +80,11 @@ abstract class Model{
     public function errorMessages()
     {
         return[
-            self::RULE_REQUIRED => 'this field is requird',
+            self::RULE_REQUIRED => 'This field is requird',
             self::RULE_MIN => 'Min length of this field must be {min}',
-            self::RULE_EMAIL => 'this field must be valid email address',
-            self::RULE_MATCH => 'this field must be as same field of {match}'
+            self::RULE_EMAIL => 'This field must be valid email address',
+            self::RULE_MATCH => 'This field must be as same field of {match}',
+            self::RULE_UNIQUE => 'This {field} already exist'
         ];
     }
     public function hasError($attribute)
