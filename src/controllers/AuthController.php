@@ -22,7 +22,7 @@ class AuthController extends Controller{
             $user->loadData(Application::$app->request->getBody());
             // var_dump( $user);
             // die();
-            if ($user->validate() && $user->register()) {
+            if ($user->validate() && $user->save()) {
                 return 'Success';
             }
             return Application::$app->router->renderView('register',[
