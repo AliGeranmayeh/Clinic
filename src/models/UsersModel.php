@@ -3,8 +3,15 @@
 namespace clinic\models;
 use clinic\core\Model;
 use clinic\core\DbModel;
+use self;
 
 class UsersModel extends DbModel{
+
+    const STATUS_PATIENT =0;
+    const STATUS_DOCTOR = 1;
+    const STATUS_ADMIN = 2;
+
+    public int $status = self::STATUS_PATIENT;
     public String $name;
     public String $username;
     public String $password;
@@ -33,6 +40,6 @@ class UsersModel extends DbModel{
 
     public function attributes() :array
     {
-        return ['name','username','email','password'];
+        return ['name','username','email','password','status'];
     }
 }
