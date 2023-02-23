@@ -23,7 +23,7 @@ class AuthController extends Controller{
             // var_dump( $user);
             // die();
             if ($user->validate() && $user->save()) {
-                return 'Success';
+                Application::$app->response->redirect('/');
             }
             return Application::$app->router->renderView('register',[
                 'model' => $user

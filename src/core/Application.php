@@ -4,6 +4,7 @@ namespace clinic\core;
 
 class Application{
 
+    public Response $response;
     public Database $db;
     public Controller $controller;
     public Request $request;
@@ -16,6 +17,7 @@ class Application{
         $this->request = new Request();
         $this->router = new Router($this->request);
         $this->db = new Database($config['db']);
+        $this->response = new Response();
     }
     public function run()
     {
