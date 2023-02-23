@@ -5,7 +5,17 @@ use clinic\controllers\AuthController;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
-$app = new Application();
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__,));
+$dotenv->load();
+
+$config = [
+    'db' =>[
+        'dsn'=> $_ENV['DB_DSN'],
+        'username' => $_ENV['DB_USERNAME'],
+        'password' => $_ENV['DB_PASSWORD'] 
+    ]
+];
+$app = new Application($config);
 $app->router->get('/',[SiteController::class,'home']);
 $app->router->get('/doctor_info',[SiteController::class,'doctorInfo']);
 $app->router->post('/doctor_info',[SiteController::class,'handleDoctorInfo']);
