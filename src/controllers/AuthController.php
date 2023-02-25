@@ -23,6 +23,7 @@ class AuthController extends Controller{
             // var_dump( $user);
             // die();
             if ($user->validate() && $user->save()) {
+                Application::$app->session->setFlash('seccess', 'thank you for registering');
                 Application::$app->response->redirect('/');
             }
             return Application::$app->router->renderView('register',[
