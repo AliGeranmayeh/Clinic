@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>main</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+   <style>
+      .hideMeAfter5Seconds {
+        animation: hideAnimation 0s ease-in 5s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes hideAnimation {
+        to {
+          visibility: hidden;
+          width: 0;
+          height: 0;
+        }
+      }
+   </style>
+   
   </head>
   <body>
 
@@ -29,6 +45,11 @@
   </div>
 </nav>
     <div class="container">
+      <?php if (clinic\core\Application::$app->session->getFlash('seccess') != false): ?>
+        <div class="alert alert-success hideMeAfter5Seconds" role="alert">
+            <?php echo clinic\core\Application::$app->session->getFlash('seccess') ?>
+        </div>
+        <?php endif; ?>
         {{content}}
     </div>
     
