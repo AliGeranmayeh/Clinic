@@ -4,4 +4,4 @@
 
 ### ERD for Database
 
-![databes ERD](db ERD.jpg)
+![databes ERD](db_ERD.jpg)
