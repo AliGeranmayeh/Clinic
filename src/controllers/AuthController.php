@@ -45,4 +45,10 @@ class AuthController extends Controller{
             'model' => $user
         ]);
     }
+
+    public function logout()
+    {
+        Application::$app->logout();
+        Application::$app->response->redirect('/');
+    }
 } 

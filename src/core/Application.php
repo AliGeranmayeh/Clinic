@@ -12,7 +12,6 @@ class Application{
     public Request $request;
     public Router $router;
     public static Application $app; 
-
     public ?DbModel $user;
     public function __construct(array $config)
     {
