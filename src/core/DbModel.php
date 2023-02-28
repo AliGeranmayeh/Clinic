@@ -1,9 +1,10 @@
 <?php 
 namespace clinic\core;
 
+
 abstract class DbModel extends Model{
 
-    abstract public function tableName() : string;
+    abstract public static function tableName() : string;
 
     abstract public function attributes() : array;
 
@@ -21,5 +22,18 @@ abstract class DbModel extends Model{
         $stmnt->execute();
 
         return true;
+    }
+
+    public static function findOne($where)
+    {
+        $table_name = static::tableName();
+        $attributes = array_keys($where);
+        $sql = implode("AND", array_map(fn($attr)=>"$attr = :$attr" , $attributes));
+        $stmnt = Application::$app->db->pdo->prepare("SELECT * FROM $table_name WHERE $sql");
+        foreach ($where as $key => $value) {
+            $stmnt->bindValue(":$key",$value);
+        }
+        $stmnt->execute();
+        return $stmnt->fetchObject(static::class);
     }
 }
