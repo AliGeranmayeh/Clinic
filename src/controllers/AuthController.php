@@ -31,8 +31,6 @@ class AuthController extends Controller{
         $user = new UsersModel();
         if (Application::$app->request->method() === 'post') {
             $user->loadData(Application::$app->request->getBody());
-            // var_dump( $user);
-            // die();
             if ($user->validate() && $user->save()) {
                 Application::$app->session->setFlash('seccess', 'thank you for registering');
                 Application::$app->response->redirect('/');

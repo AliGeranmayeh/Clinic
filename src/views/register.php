@@ -32,7 +32,17 @@
         <input type="password" class="form-control <?php echo $model->hasError('confirm_password')?'is-invalid':'' ?>" value = "<?php echo $model->confirm_password ??'' ?>" id="confirm_password" rows="3" name = "confirm_password">
         <div class="invalid-feedback"><?php echo $model->getFirstError('confirm_password') ?></div>
     </div>
-    
+    <div class="form-check">
+  <input  value = 0 class="form-check-input" type="radio" name="type" id="patient" checked>
+  <label class="form-check-label" for="patient">Patient</label>
+</div>
+<div class="form-check">
+  <input value = 1 class="form-check-input" type="radio" name="type" id="doctor">
+  <label class="form-check-label" for="doctor">
+    Doctor
+  </label>
+</div>
+
     
     <button type="submit" class="btn btn-primary my-3">Register</button>
 </form>
