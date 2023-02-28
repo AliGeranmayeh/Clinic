@@ -57,8 +57,16 @@
           </ul>
         <?php else: ?>
           <ul class = navbar-nav>
+          
+          <li class="nav-item">
+              <a class="nav-link" href="/logout">logout</a>
+          </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/doctor_info">profile</a>
+            </li>
             <li class="nav-item ">
-              <a class="nav-link" href="/logout">Welcome <?php echo clinic\core\Application::$app->user->displayUser()?> (logout)</a>
+             <div class = "navbar-text mx-2" >Welcome <?php echo clinic\core\Application::$app->user->displayUser()?> </div> 
             </li>
           </ul>
        <?php endif; ?> 

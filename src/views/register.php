@@ -34,5 +34,7 @@
     </div>
     
     
-    <button type="submit" class="btn btn-primary my-3">register</button>
+    <button type="submit" class="btn btn-primary my-3">Register</button>
 </form>
+
+<div >You have an account? <a href="/login">Login here</a></div>

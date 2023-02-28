@@ -15,5 +15,7 @@
         <div class="invalid-feedback"><?php echo $model->getFirstError('password') ?></div>
     </div>
     
-    <button type="submit" class="btn btn-primary my-3">login</button>
+    <button type="submit" class="btn btn-primary my-3">Login</button>
 </form>
+
+<div>You don't have an account? <a href="/register">Sign up here</a></div>
