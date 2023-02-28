@@ -30,8 +30,6 @@ class LoginForm extends Model{
         return false;
        }
 
-       var_dump($user);
-       die();
        return Application::$app->login($user);
     }
     public function tableName() :string
