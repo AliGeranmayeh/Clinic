@@ -11,6 +11,8 @@ class Application{
     public Request $request;
     public Router $router;
     public static Application $app; 
+
+    public ?DbModel $user;
     public function __construct(array $config)
     {
         $this->controller = new Controller();
@@ -24,5 +26,10 @@ class Application{
     public function run()
     {
         echo $this->router->resolve();
+    }
+
+    public function login(DbModel $user)
+    {
+        
     }
 }
