@@ -3,15 +3,26 @@ namespace clinic\controllers;
 use clinic\core\Application;
 use clinic\core\Controller;
 use clinic\models\UsersModel;
+use clinic\models\LoginForm;
 
 class AuthController extends Controller{
     public static function login()
     {
+        $loginForm = new LoginForm(); 
         self::setLayout('auth');
         if (Application::$app->request->method() === 'post') {
-            return 'handle data';
+            $loginForm->loadData(Application::$app->request->getBody());
+            if ($loginForm->validate() && $loginForm->login()) {
+                Application::$app->session->setFlash('login', 'welcome back');
+                Application::$app->response->redirect('/');
+            }
+            return Application::$app->router->renderView('login',[
+                'model' => $loginForm
+            ]);
         }
-        return Application::$app->router->renderView('login');
+        return Application::$app->router->renderView('login',[
+            'model' => $loginForm
+        ]);
     }
      
     public static function register()
