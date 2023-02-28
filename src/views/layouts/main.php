@@ -82,6 +82,11 @@
             <?php echo clinic\core\Application::$app->session->getFlash('seccess') ?>
         </div>
         <?php endif; ?>
+        <?php if (clinic\core\Application::$app->session->getFlash('login') != false): ?>
+        <div class="alert alert-success hideMeAfter5Seconds" role="alert">
+            <?php echo clinic\core\Application::$app->session->getFlash('login') ?>
+        </div>
+        <?php endif; ?>
         {{content}}
     </div>
     
