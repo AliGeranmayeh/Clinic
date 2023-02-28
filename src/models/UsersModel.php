@@ -33,7 +33,7 @@ class UsersModel extends DbModel{
             'confirm_password' => [self::RULE_REQUIRED,[self::RULE_MATCH,'match' => 'password']],
         ];
     }
-    public function tableName() :string
+    public static function tableName() :string
     {
         return 'users';
     }
