@@ -29,6 +29,9 @@ class Application{
         if ($primary_value) {
             $this->user = $this->user_class::findOne(['id'=>$primary_value]);
         }
+        else {
+            $this->user = null;
+        }
     }
     public function run()
     {
@@ -41,6 +44,7 @@ class Application{
         $primary_key = 'id';
         $primary_value = $user->{$primary_key};
         $this->session->set('user', $primary_value);
+        return true;
     }
 
     public function logout()
