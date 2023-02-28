@@ -4,6 +4,7 @@ namespace clinic\core;
 
 class Application{
 
+    public string $user_class;
     public Session $session;
     public Response $response;
     public Database $db;
@@ -15,6 +16,7 @@ class Application{
     public ?DbModel $user;
     public function __construct(array $config)
     {
+        $this->user_class = $config["user_class"];
         $this->controller = new Controller();
         self::$app = $this;
         $this->request = new Request();
@@ -22,6 +24,11 @@ class Application{
         $this->db = new Database($config['db']);
         $this->response = new Response();
         $this->session = new Session();
+
+        $primary_value = $this->session->get('user');
+        if ($primary_value) {
+            $this->user = $this->user_class::findOne(['id'=>$primary_value]);
+        }
     }
     public function run()
     {
@@ -30,6 +37,15 @@ class Application{
 
     public function login(DbModel $user)
     {
-        
+        $this->user = $user;
+        $primary_key = 'id';
+        $primary_value = $user->{$primary_key};
+        $this->session->set('user', $primary_value);
+    }
+
+    public function logout()
+    {
+        $this->user = null;
+        $this->session->remove('user');
     }
 }

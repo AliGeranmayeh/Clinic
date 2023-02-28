@@ -2,6 +2,7 @@
 use clinic\core\Application;
 use clinic\controllers\SiteController;
 use clinic\controllers\AuthController;
+use clinic\models\UsersModel;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
@@ -9,6 +10,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 $config = [
+    'user_class' => UsersModel::class,
     'db' =>[
         'dsn'=> $_ENV['DB_DSN'],
         'username' => $_ENV['DB_USERNAME'],
