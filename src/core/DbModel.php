@@ -36,4 +36,9 @@ abstract class DbModel extends Model{
         $stmnt->execute();
         return $stmnt->fetchObject(static::class);
     }
+
+    public function displayUser()
+    {
+        return $this->username ?? '';
+    }
 }
