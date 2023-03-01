@@ -49,4 +49,13 @@ abstract class DbModel extends Model{
     {
         return ($this->type==1)?true :false;
     }
+
+    public function getUsersList()
+    {
+        $table_name = static::tableName();
+        $stmnt = Application::$app->db->pdo->prepare("SELECT * FROM $table_name");
+        $stmnt->execute();
+        $stmnt->fetchAll(\PDO::FETCH_OBJ);
+
+    }
 }
