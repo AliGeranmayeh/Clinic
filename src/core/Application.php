@@ -36,7 +36,7 @@ class Application{
         echo $this->router->resolve();
     }
 
-    public function login(DbModel $user)
+    public function auth(DbModel $user)
     {
         $this->user = $user;
         $primary_key = 'id';

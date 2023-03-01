@@ -30,7 +30,7 @@ class LoginForm extends Model{
         return false;
        }
 
-       return Application::$app->login($user);
+       return Application::$app->auth($user);
     }
     public function tableName() :string
     {

@@ -1,5 +1,6 @@
 <?php 
 namespace clinic\core;
+use clinic\models\UsersModel;
 
 
 abstract class DbModel extends Model{
@@ -20,8 +21,10 @@ abstract class DbModel extends Model{
             $stmnt->bindValue(":$attribute",$this->{$attribute});
         }
         $stmnt->execute();
-
-        return true;
+        
+        $username = $this->{$attributes[1]};
+        $user =  self::findOne(['username' => $username]);
+        return Application::$app->auth($user);
     }
 
     public static function findOne($where)
