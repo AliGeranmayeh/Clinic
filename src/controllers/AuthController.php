@@ -31,6 +31,9 @@ class AuthController extends Controller{
         if (Application::$app->request->method() === 'post') {
             $user->loadData(Application::$app->request->getBody());
             if ($user->validate() && $user->save()) {
+                if ($user->isDoctor()) {
+                    Application::$app->session->setFlash('doctor', 'you need to be varified by admins');
+                }
                 Application::$app->session->setFlash('seccess', 'thank you for registering');
                 Application::$app->response->redirect('/');
             }

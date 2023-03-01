@@ -44,4 +44,9 @@ abstract class DbModel extends Model{
     {
         return $this->username ?? '';
     }
+
+    public function isDoctor()
+    {
+        return ($this->type==1)?true :false;
+    }
 }
