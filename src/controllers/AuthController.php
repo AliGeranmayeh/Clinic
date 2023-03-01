@@ -13,7 +13,6 @@ class AuthController extends Controller{
         if (Application::$app->request->method() === 'post') {
             $loginForm->loadData(Application::$app->request->getBody());
             if ($loginForm->validate() && $loginForm->login()) {
-                Application::$app->session->setFlash('login', 'welcome back');
                 Application::$app->response->redirect('/');
             }
             return Application::$app->router->renderView('login',[
