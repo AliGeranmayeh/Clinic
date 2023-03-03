@@ -15,7 +15,6 @@ class HomeController extends Controller{
     {
         $doctor_model = new DoctorsModel();
         $users = new UsersModel();
-        $doctor_model->getUsersList();
         return Application::$app->router->renderView('home',[
             'doctors' => $doctor_model->getUsersList(),
             'users' => $users->getUsersList()
@@ -24,8 +23,12 @@ class HomeController extends Controller{
 
     public function search()
     {
-        var_dump($_POST);
-        die();
+        $doctor_model = new DoctorsModel();
+        $data = Application::$app->request->getPostedFormData();
+        $search_data = $data['search'];
+        return Application::$app->router->renderView('home',[
+            'search'=> $doctor_model->search(['name' => $search_data])
+        ]);
     }
 
 }
