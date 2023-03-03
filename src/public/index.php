@@ -3,6 +3,7 @@ use clinic\core\Application;
 use clinic\controllers\SiteController;
 use clinic\controllers\AuthController;
 use clinic\models\UsersModel;
+use clinic\controllers\HomeController;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
@@ -18,7 +19,7 @@ $config = [
     ]
 ];
 $app = new Application($config);
-$app->router->get('/',[SiteController::class,'home']);
+$app->router->get('/',[HomeController::class,'home']);
 $app->router->get('/doctor_info',[SiteController::class,'doctorInfo']);
 $app->router->post('/doctor_info',[SiteController::class,'handleDoctorInfo']);
 $app->router->get('/login',[AuthController::class,'login']);

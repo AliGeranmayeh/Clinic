@@ -55,7 +55,6 @@ abstract class DbModel extends Model{
         $table_name = static::tableName();
         $stmnt = Application::$app->db->pdo->prepare("SELECT * FROM $table_name");
         $stmnt->execute();
-        $stmnt->fetchAll(\PDO::FETCH_OBJ);
-
+        return $stmnt->fetchAll(\PDO::FETCH_OBJ);
     }
 }
