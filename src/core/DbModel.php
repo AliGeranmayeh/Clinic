@@ -68,4 +68,11 @@ abstract class DbModel extends Model{
         $stmnt->execute();
         return $stmnt->fetchAll(\PDO::FETCH_OBJ);
     }
+
+    public static function doctorNameSearch($like)
+    {
+        $stmnt = Application::$app->db->pdo->prepare("SELECT doctors.* FROM doctors,users WHERE users.id = doctors.user_id AND users.name LIKE ?");
+        $stmnt->execute(["$like%"]);
+        return $stmnt->fetchAll(\PDO::FETCH_OBJ);
+    }
 }
