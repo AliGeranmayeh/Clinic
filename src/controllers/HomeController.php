@@ -23,11 +23,12 @@ class HomeController extends Controller{
 
     public function search()
     {
-        $doctor_model = new DoctorsModel();
+        $users = new UsersModel();
         $data = Application::$app->request->getPostedFormData();
         $search_data = $data['search'];
         return Application::$app->router->renderView('home',[
-            'search'=> $doctor_model->search(['name' => $search_data])
+            'doctors'=> DbModel::doctorNameSearch($search_data),
+            'users' => $users->getUsersList()
         ]);
     }
 
