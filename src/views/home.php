@@ -1,4 +1,4 @@
-<div class="row row-cols-3">
+<div class="row row-cols-3 my-5">
 <?php 
     foreach ($doctors as $doctor) { ?>
         <div class="col">
