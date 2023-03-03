@@ -2,7 +2,7 @@
 namespace clinic\models;
 use clinic\core\DbModel;
 
-class DoctorModel extends DbModel{
+class DoctorsModel extends DbModel{
     public $user_id;
     public $medical_code;
     public $office_address;
