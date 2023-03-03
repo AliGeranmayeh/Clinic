@@ -1,3 +1,9 @@
+
+<form method="post" action="" class="d-flex justify-content-center m-4">
+      <input class="form-control me-2 w-50 " type="search" placeholder="Search" aria-label="Search" name="search">
+      <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
+
 <div class="row row-cols-3 my-5">
 <?php 
     foreach ($doctors as $doctor) { ?>

@@ -20,6 +20,7 @@ $config = [
 ];
 $app = new Application($config);
 $app->router->get('/',[HomeController::class,'home']);
+$app->router->post('/',[HomeController::class,'search']);
 $app->router->get('/doctor_info',[SiteController::class,'doctorInfo']);
 $app->router->post('/doctor_info',[SiteController::class,'handleDoctorInfo']);
 $app->router->get('/login',[AuthController::class,'login']);
