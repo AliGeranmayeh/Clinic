@@ -34,4 +34,9 @@ class Request{
         }
         return $body;
     }
+
+    public function getPostedFormData()
+    {
+        return $_POST;
+    }
 }
