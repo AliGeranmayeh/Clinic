@@ -57,4 +57,15 @@ abstract class DbModel extends Model{
         $stmnt->execute();
         return $stmnt->fetchAll(\PDO::FETCH_OBJ);
     }
+
+    public function search($like)
+    {
+        $table_name = static::tableName();
+        $attribute = array_keys($like);
+        $sql = "$attribute = :$attribute";
+        $stmnt = Application::$app->db->pdo->prepare("SELECT * FROM $table_name WHERE $sql");
+        $stmnt->bindValue(":$attribute","$like%");
+        $stmnt->execute();
+        return $stmnt->fetchAll(\PDO::FETCH_OBJ);
+    }
 }
