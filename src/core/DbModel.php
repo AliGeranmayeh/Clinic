@@ -75,5 +75,10 @@ abstract class DbModel extends Model{
         $stmnt->execute(["$like%" , $section]);
         return $stmnt->fetchAll(\PDO::FETCH_OBJ);
     }
-    
+    public static function getSections()
+    {
+        $stmnt = Application::$app->db->pdo->prepare("SELECT * FROM sections");
+        $stmnt->execute();
+        return $stmnt->fetchAll(\PDO::FETCH_OBJ);  
+    }
 }
