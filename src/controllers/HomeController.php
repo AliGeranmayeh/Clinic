@@ -17,7 +17,8 @@ class HomeController extends Controller{
         $users = new UsersModel();
         return Application::$app->router->renderView('home',[
             'doctors' => $doctor_model->getUsersList(),
-            'users' => $users->getUsersList()
+            'users' => $users->getUsersList(),
+            'sections' => DbModel::getSections()
         ]);
     }
 
@@ -28,7 +29,8 @@ class HomeController extends Controller{
         $search_data = $data['search'];
         return Application::$app->router->renderView('home',[
             'doctors'=> DbModel::doctorNameSearch($search_data),
-            'users' => $users->getUsersList()
+            'users' => $users->getUsersList(),
+            'sections' => DbModel::getSections()
         ]);
     }
 
