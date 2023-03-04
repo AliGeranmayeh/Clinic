@@ -1,9 +1,9 @@
 
 <form method="post" action="" class="d-flex justify-content-center m-4">
-<select class="form-select mx-1 w-25" aria-label="Default select example " style= 'width = 10px'>
+<select class="form-select mx-1 w-25" aria-label="Default select example " name="section_name">
   <option selected value = " ">choose a section</option>
   <?php foreach ($sections as $section) { ?>
-    <option value="<?php $section->id ?>"><?php echo $section->name ?></option>
+    <option value="<?php echo $section->id ?>"><?php echo $section->name ?></option>
   <?php } ?>
 </select>
       <input class="form-control me-2 w-50 " type="search" placeholder="Search" aria-label="Search" name="search">

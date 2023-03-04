@@ -26,6 +26,8 @@ class HomeController extends Controller{
     {
         $users = new UsersModel();
         $data = Application::$app->request->getPostedFormData();
+        var_dump($data);
+        die();
         $search_data = $data['search'];
         return Application::$app->router->renderView('home',[
             'doctors'=> DbModel::doctorNameSearch($search_data),
