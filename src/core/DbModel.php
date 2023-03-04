@@ -69,10 +69,16 @@ abstract class DbModel extends Model{
     //     return $stmnt->fetchAll(\PDO::FETCH_OBJ);
     // }
 
-    public static function doctorNameSearch($like , $section = '')
+    public static function doctorNameSearch($like , $section)
     {
-        $stmnt = Application::$app->db->pdo->prepare("SELECT doctors.* , sections.name as section_name FROM doctors,users,sections,doctors_sections WHERE users.id = doctors.user_id AND doctors.id = doctors_sections.doctor_id AND users.name LIKE ? AND sections.name = ?");
-        $stmnt->execute(["$like%" , $section]);
+        if ($section !== " ") {
+            $stmnt = Application::$app->db->pdo->prepare("SELECT DISTINCT doctors.* , sections.name as section_name FROM doctors,users,sections,doctors_sections WHERE users.id = doctors.user_id AND doctors.id = doctors_sections.doctor_id AND doctors_sections.section_id = sections.id AND users.name LIKE ? AND sections.id = ?");
+            $stmnt->execute(["$like%" , $section]);
+        }
+        else {
+            $stmnt = Application::$app->db->pdo->prepare("SELECT DISTINCT doctors.* , sections.name as section_name FROM doctors,users,sections,doctors_sections WHERE users.id = doctors.user_id AND doctors.id = doctors_sections.doctor_id AND doctors_sections.section_id = sections.id AND users.name LIKE ?");
+            $stmnt->execute(["$like%"]);
+        }
         return $stmnt->fetchAll(\PDO::FETCH_OBJ);
     }
     public static function getSections()
