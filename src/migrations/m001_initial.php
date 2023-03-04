@@ -14,6 +14,7 @@ class m001_initial{
             password VARCHAR(255) NOT NULL,
             status TINYINT NOT NULL,
             type TINYINT NOT NULL,
+            profile_pic longblob NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )ENGINE=INNODB;";
         $db->pdo->exec($query);   
