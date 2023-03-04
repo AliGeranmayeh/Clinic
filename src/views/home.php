@@ -1,7 +1,13 @@
 
 <form method="post" action="" class="d-flex justify-content-center m-4">
+<select class="form-select mx-1 w-25" aria-label="Default select example " style= 'width = 10px'>
+  <option selected value = ' '>choose a section</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
       <input class="form-control me-2 w-50 " type="search" placeholder="Search" aria-label="Search" name="search">
-      <button class="btn btn-outline-secondary" type="submit">Search</button>
+      <button class="btn btn-outline-secondary mx-1 " type="submit">Search</button>
 </form>
 
 <div class="row row-cols-3 my-5">

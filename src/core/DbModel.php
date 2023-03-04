@@ -58,21 +58,22 @@ abstract class DbModel extends Model{
         return $stmnt->fetchAll(\PDO::FETCH_OBJ);
     }
 
-    public function search($like)
-    {
-        $table_name = static::tableName();
-        $attribute = array_keys($like);
-        $sql = "$attribute = :$attribute";
-        $stmnt = Application::$app->db->pdo->prepare("SELECT * FROM $table_name WHERE $sql");
-        $stmnt->bindValue(":$attribute","$like%");
-        $stmnt->execute();
-        return $stmnt->fetchAll(\PDO::FETCH_OBJ);
-    }
+    // public function search($like)
+    // {
+    //     $table_name = static::tableName();
+    //     $attribute = array_keys($like);
+    //     $sql = "$attribute = :$attribute";
+    //     $stmnt = Application::$app->db->pdo->prepare("SELECT * FROM $table_name LIKE $sql");
+    //     $stmnt->bindValue(":$attribute","$like%");
+    //     $stmnt->execute();
+    //     return $stmnt->fetchAll(\PDO::FETCH_OBJ);
+    // }
 
-    public static function doctorNameSearch($like)
+    public static function doctorNameSearch($like , $section = '')
     {
-        $stmnt = Application::$app->db->pdo->prepare("SELECT doctors.* FROM doctors,users WHERE users.id = doctors.user_id AND users.name LIKE ?");
-        $stmnt->execute(["$like%"]);
+        $stmnt = Application::$app->db->pdo->prepare("SELECT doctors.* , sections.name as section_name FROM doctors,users,sections,doctors_sections WHERE users.id = doctors.user_id AND doctors.id = doctors_sections.doctor_id AND users.name LIKE ? AND sections.name = ?");
+        $stmnt->execute(["$like%" , $section]);
         return $stmnt->fetchAll(\PDO::FETCH_OBJ);
     }
+    
 }
