@@ -8,25 +8,29 @@ use clinic\models\LoginForm;
 class AuthController extends Controller{
     public static function login()
     {
-        $loginForm = new LoginForm(); 
-        self::setLayout('auth');
-        if (Application::$app->request->method() === 'post') {
-            $loginForm->loadData(Application::$app->request->getBody());
-            if ($loginForm->validate() && $loginForm->login()) {
-                Application::$app->response->redirect('/');
+        if (Application::$app->user === null) {
+            $loginForm = new LoginForm(); 
+            self::setLayout('auth');
+            if (Application::$app->request->method() === 'post') {
+                $loginForm->loadData(Application::$app->request->getBody());
+                if ($loginForm->validate() && $loginForm->login()) {
+                    Application::$app->response->redirect('/');
+                }
+                return Application::$app->router->renderView('login',[
+                    'model' => $loginForm
+                ]);
             }
             return Application::$app->router->renderView('login',[
                 'model' => $loginForm
-            ]);
+            ]);   
         }
-        return Application::$app->router->renderView('login',[
-            'model' => $loginForm
-        ]);
+        return  Application::$app->router->renderView('forbiden');
     }
      
     public static function register()
     {   
-        self::setLayout('auth');
+        if (Application::$app->user === null) {
+            self::setLayout('auth');
         $user = new UsersModel();
         if (Application::$app->request->method() === 'post') {
             $user->loadData(Application::$app->request->getBody());
@@ -43,7 +47,9 @@ class AuthController extends Controller{
         }
         return Application::$app->router->renderView('register',[
             'model' => $user
-        ]);
+        ]);   
+        }
+        return  Application::$app->router->renderView('forbiden');
     }
 
     public function logout()
