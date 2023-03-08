@@ -63,7 +63,7 @@
           </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/doctor_info">profile</a>
+              <a class="nav-link" href="/profile">profile</a>
             </li>
             <li class="nav-item ">
              <div class = "navbar-text mx-2" >Welcome <?php echo clinic\core\Application::$app->user->displayUser()?> </div> 
