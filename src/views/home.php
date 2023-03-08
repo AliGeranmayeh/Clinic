@@ -1,4 +1,10 @@
-
+<?php 
+ error_reporting(E_ERROR | E_PARSE);
+    foreach ($doctors as $doctor) {
+        $doctor_section["$doctor->id"] .= "{$doctor->section_name}&nbsp&nbsp&nbsp";
+    }
+   
+?>
 <form method="post" action="" class="d-flex justify-content-center m-4">
 <select class="form-select mx-1 w-25" aria-label="Default select example " name="section_name">
   <option selected value = " ">choose a section</option>
@@ -12,7 +18,14 @@
 
 <div class="row row-cols-3 my-5">
 <?php 
-    foreach ($doctors as $doctor) { ?>
+    foreach ($doctors as $doctor) { 
+        if (!array_search($doctor->id ,array_keys( $doctor_ids))) {
+            $doctor_ids[] = $doctor->id;
+        }
+        else {
+            continue;
+        }
+        ?>
         <div class="col">
             <div class="card border-secondary mb-3 " style="max-width: 18rem;">
                 <div class="card-body text-secondary p-0">
@@ -21,6 +34,9 @@
                             <div class="card-header"> <h5> <?php echo $user->name ?> </h5></div>
                        <?php } ?>
                     <?php } ?>
+                    
+                    <p class="card-title p-1  m-0"><b> section:</b> <?php echo $doctor_section["$doctor->id"] ?></p>
+                    <hr style="margin: 0">
                     <p class="card-title p-1  m-0"><b> Payment:</b> <?php echo $doctor->visit ?></p>
                     <hr style="margin: 0">
                     <p class="card-text p-1  m-0"><b> Phone Number: </b><?php echo $doctor->phone_number ?></p>
