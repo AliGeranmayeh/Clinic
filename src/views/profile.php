@@ -1,5 +1,5 @@
 
-<h1 class="my-3">informations</h1>
+<h1 class="my-3  mb-5"">informations</h1>
 
 
 <?php if ($is_doctor) { ?>
@@ -35,7 +35,7 @@
 <?php } ?>
 
 
-<h3>Change Your Password</h3>
+<h5 class="mt-5 mb-4">Change Your Password</h5>
 
 <form action = "" method = "post">
     
