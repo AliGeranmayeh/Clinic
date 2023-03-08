@@ -87,4 +87,10 @@ abstract class DbModel extends Model{
         $stmnt->execute();
         return $stmnt->fetchAll(\PDO::FETCH_OBJ);  
     }
+    public static function getUDoctorList()
+    {
+        $stmnt = Application::$app->db->pdo->prepare("SELECT DISTINCT doctors.* , sections.name as section_name FROM doctors,users,sections,doctors_sections WHERE doctors.id = doctors_sections.doctor_id AND doctors_sections.section_id = sections.id");
+        $stmnt->execute();
+        return $stmnt->fetchAll(\PDO::FETCH_OBJ);
+    }
 }
