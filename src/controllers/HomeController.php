@@ -13,12 +13,13 @@ class HomeController extends Controller{
 
     public function home()
     {
-        $doctor_model = new DoctorsModel();
         $users = new UsersModel();
         return Application::$app->router->renderView('home',[
-            'doctors' => $doctor_model->getUsersList(),
-            'users' => $users->getUsersList(),
-            'sections' => DbModel::getSections()
+            'doctors' => DbModel::getUDoctorList(),
+            'users' => $users->getUSersList(),
+            'sections' => DbModel::getSections(),
+            'doctor_section' => [],
+            'doctor_ids' => []
         ]);
     }
 
@@ -26,13 +27,12 @@ class HomeController extends Controller{
     {
         $users = new UsersModel();
         $data = Application::$app->request->getPostedFormData();
-        var_dump($data);
-        die();
-        $search_data = $data['search'];
         return Application::$app->router->renderView('home',[
-            'doctors'=> DbModel::doctorNameSearch($search_data),
+            'doctors'=> DbModel::doctorNameSearch($data['search'],$data["section_name"]),
             'users' => $users->getUsersList(),
-            'sections' => DbModel::getSections()
+            'sections' => DbModel::getSections(),
+            'doctor_section' => [],
+            'doctor_ids' => []
         ]);
     }
 
